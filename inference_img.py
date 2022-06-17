@@ -24,26 +24,20 @@ args = parser.parse_args()
 
 try:
     try:
-        try:
-            from model.RIFE_HDv2 import Model
-            model = Model()
-            model.load_model(args.modelDir, -1)
-            print("Loaded v2.x HD model.")
-        except:
-            from train_log.RIFE_HDv3 import Model
-            model = Model()
-            model.load_model(args.modelDir, -1)
-            print("Loaded v3.x HD model.")
-    except:
-        from model.RIFE_HD import Model
+        from model.RIFE_HDv2 import Model
         model = Model()
         model.load_model(args.modelDir, -1)
-        print("Loaded v1.x HD model")
+        print("Loaded v2.x HD model.")
+    except:
+        from train_log.RIFE_HDv3 import Model
+        model = Model()
+        model.load_model(args.modelDir, -1)
+        print("Loaded v3.x HD model.")
 except:
-    from model.RIFE import Model
+    from model.RIFE_HD import Model
     model = Model()
     model.load_model(args.modelDir, -1)
-    print("Loaded ArXiv-RIFE model")
+    print("Loaded v1.x HD model")
 model.eval()
 model.device()
 
